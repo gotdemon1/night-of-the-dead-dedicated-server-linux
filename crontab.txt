@@ -1,0 +1,1 @@
+0 */4 * * * /home/steam/notd/backup.sh > /dev/null 2>&1

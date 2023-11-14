@@ -4,9 +4,10 @@ services:
     build: .
     container_name: notd
     volumes:
-      - ./Saved:/home/steam/notd/LF/Saved
-      - ./ServerSettings.ini:/home/steam/notd/LF/Saved/Config/ServerSettings.ini
-      - ./backup:/home/steam/backup
+      - ./ServerSettings.ini:/home/steam/notd/LF/Saved/Config/ServerSettings.ini        
+      - ./Saved:/home/steam/notd/LF/Saved:rw
+      - ./backup:/home/steam/backup:rw
+      - ./backup.sh:/home/steam/notd/backup.sh
     ports:
       - 7777:7777/udp
       - 27015:27015/udp

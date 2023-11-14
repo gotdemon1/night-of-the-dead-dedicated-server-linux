@@ -18,12 +18,13 @@ RUN wget -nv -O /usr/bin/winetricks https://raw.githubusercontent.com/Winetricks
 RUN ../steamcmd/steamcmd.sh +force_install_dir ${APPDIR} +login anonymous +app_update 1420710 validate +quit 
 RUN chown -R steam:steam ${APPDIR}
 
-RUN  echo "# Crontab file" > crontab.txt \
-    echo "0 */4 * * * APPDIR/backup.sh > /dev/null 2>&1" >> crontab.txt
-     # Add crontab
-   crontab -u steam crontab.txt \
-   # Cleanup junk file
-   rm crontab.txt
+RUN  apt-get update && apt-get install -y cron \
+    && rm -rf /var/lib/apt/lists/* 
+
+COPY crontab.txt crontab.txt
+RUN   crontab -u steam crontab.txt \
+   && rm crontab.txt 
+   
 USER ${USER}
 RUN winecfg
 WORKDIR ${APPDIR}
