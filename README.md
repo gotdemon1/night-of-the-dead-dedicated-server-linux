@@ -1,6 +1,6 @@
 # Night of the dead wine for linux dedicated server
 
-
+<pre>
 !!
 For now, its not working fine, config in ServerSettings.ini
 !!
@@ -18,3 +18,5 @@ services:
       - 27015:27015/udp
     restart: unless-stopped
     tty: true
+
+</pre>
