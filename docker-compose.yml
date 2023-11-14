@@ -1,17 +1,11 @@
-# Night of the dead wine for linux dedicated server
-
-
-!!
-For now, its not working fine, config in ServerSettings.ini
-!!
 version: '3.5'
 services:
   notd:
     build: .
     container_name: notd
     volumes:
-      - ./ServerSettings.ini:/home/steam/notd/ServerSettings.ini
       - ./Saved:/home/steam/notd/LF/Saved
+      - ./ServerSettings.ini:/home/steam/notd/LF/Saved/Config/ServerSettings.ini
       - ./backup:/home/steam/backup
     ports:
       - 7777:7777/udp
