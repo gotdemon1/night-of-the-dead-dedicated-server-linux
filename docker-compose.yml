@@ -3,11 +3,17 @@ services:
   notd:
     build: .
     container_name: notd
+    environment:
+      TZ: "Europe/Moscow"
     volumes:
-      - ./ServerSettings.ini:/home/steam/notd/LF/Saved/Config/ServerSettings.ini        
-      - ./Saved:/home/steam/notd/LF/Saved:rw
+          
+      - ./gamedata:/home/steam/notd:rw
+      - ./ServerSettings.ini:/home/steam/ServerSettings.ini 
       - ./backup:/home/steam/backup:rw
-      - ./backup.sh:/home/steam/notd/backup.sh
+      - ./start.sh:/etc/entrypoint.sh
+      - ./backup.sh:/home/steam/backup.sh
+      - ./crontab.txt:/home/steam/crontab.txt
+      - /etc/localtime:/etc/localtime:ro
     ports:
       - 7777:7777/udp
       - 27015:27015/udp
